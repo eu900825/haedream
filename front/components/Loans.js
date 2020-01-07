@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Link from "next/link";
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import axios from 'axios';
 
 const Loans = () => {
     const [name, setName] = useState('');
@@ -9,16 +10,22 @@ const Loans = () => {
     const [phone03, setPhone03] = useState('');
     const [term01, setTerm01] = useState(false);
     const [term02, setTerm02] = useState(false);
-
+    
     const onSubmit = () => {
-        e.preventDefault();
-        console.log({
-            name,
-            phone01,
-            phone02,
-            phone03,       
+        const phone = `${phone01}-${phone02}-${phone03}`
+        alert('대출 신청이 완료되었습니다.')
+        if(true) {
+            return axios.post('http://localhost:3065/api/loans/', {
+            name: name,
+            phone: phone,
         });
+        }        
+        
     };
+
+    const onClick = () => {
+        
+    }
 
     const onChangeName = (e) => {
         setName(e.target.value);
